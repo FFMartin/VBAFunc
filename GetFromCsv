@@ -1,0 +1,18 @@
+'RECUPERER UNE VALEUR DANS UN CSV
+Public Function GetFromCsv(strPath As String, numItem As Integer) As String
+    
+	Dim items As Variant, fline As String, result As String
+    
+    Open strPath For Input As #1
+    
+    Do Until EOF(1)
+        Line Input #1, fline
+        items = Split(fline, ",")
+        result = items(numItem)
+    Loop
+    
+    GetFromCsv = result
+    
+    Close #1
+
+End Function
