@@ -1,0 +1,2 @@
+'METTRE EN VEILLE
+Declare Sub Sleep Lib "kernel32" (ByVal dwMillisconds As Long)
