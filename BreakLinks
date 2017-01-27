@@ -1,3 +1,4 @@
+'SUPPRESSION DES REFERENCES EXTERNES
 Function BreakLinks()
 	
 	Dim objName As Object, varLinks As Variant, i As Integer
