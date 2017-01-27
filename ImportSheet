@@ -1,0 +1,33 @@
+'IMPORTER UNE FEUILLE EXCEL
+Public Function ImportSheet(strWbSrc As String, strWsSrc As String, strWsDst As String)
+	Application.ScreenUpdating = False
+
+	Dim nameOrig As String: nameOrig = ActiveSheet.Name
+	Dim wbDst As Workbook: Set wbDst = ThisWorkbook
+	Dim ws As Worksheet
+	Dim wbSrc As Workbook: Set wbSrc = Workbooks.Open(strWbSrc)
+	Dim wsSrc As Worksheet
+	
+	If strWsSrc = "" Then
+		Set wsSrc = wbSrc.Sheets(1)
+	Else
+		Set wsSrc = wbSrc.Sheets(strWsSrc)
+	End If
+
+	For Each ws In wbDst.Worksheets
+		Application.DisplayAlerts = False
+		If ws.Name = strWsDst Then ws.Delete
+		Application.DisplayAlerts = True
+	Next
+
+	wsSrc.Copy After:=wbDst.Sheets(wbDst.Sheets.Count)
+	ActiveSheet.Name = strWsDst
+
+	Application.DisplayAlerts = False
+	wbSrc.Close
+	Application.DisplayAlerts = True
+	
+	wbDst.Sheets(nameOrig).Activate
+	
+	Application.ScreenUpdating = True
+End Function
