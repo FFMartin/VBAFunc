@@ -1,0 +1,6 @@
+Public Function DropFolder(strFolder As String)
+    
+	Dim fso As New FileSystemObject
+	If fso.FolderExists(strFolder) = True Then fso.DeleteFolder Left(strFolder, Len(strFolder) - 1)
+
+End Function
