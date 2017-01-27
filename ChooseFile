@@ -1,0 +1,19 @@
+'CHOISIR UN FICHIER
+Public Function ChooseFile(strFolder As String) As String
+	
+	Dim strItem As String
+	Dim fldr As FileDialog:	Set fldr = Application.FileDialog(msoFileDialogFilePicker)
+	
+	With fldr
+		.Title = "Choisir un fichier"
+		.AllowMultiSelect = False
+		.InitialFileName = strFolder
+		If .Show <> -1 Then GoTo Suite
+		strItem = .SelectedItems(1)
+	End With
+		
+	Suite:
+	ChooseFile = strItem
+	Set fldr = Nothing
+    
+End Function
