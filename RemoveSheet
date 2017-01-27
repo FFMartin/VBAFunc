@@ -1,0 +1,16 @@
+'SUPPRIMER UNE FEUILLE DU CLASSEUR ACTIVE
+Public Function RemoveSheet(wsName As String)
+
+    Dim wb As Workbook: Set wb = ThisWorkbook
+    Dim ws As Worksheet
+    
+    For Each ws In wb.Sheets
+        Application.DisplayAlerts = False
+        If ws.Name = wsName Then
+            ws.Delete
+            Exit For
+        End If
+        Application.DisplayAlerts = False
+    Next
+    
+End Function
