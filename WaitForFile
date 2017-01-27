@@ -1,0 +1,17 @@
+'ATTENDRE UN FICHIER
+Public Function WaitForFile(strPath As String, strMaxWait As String) As Boolean
+	
+	Dim timeLimit As String: timeLimit = (Now() + TimeValue(strMaxWait))
+
+	Do While Not CheckFile(strPath) = True
+		Application.Wait (Now() + TimeValue("00:00:1"))
+		If Now() > timeLimit Then
+			WaitForFile = False
+			Exit Function
+		End If
+	Loop
+
+	Application.Wait (Now() + TimeValue("00:00:3"))
+	WaitForFile = True
+
+End Function
