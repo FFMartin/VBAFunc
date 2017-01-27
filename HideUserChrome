@@ -1,0 +1,30 @@
+'MASQUER LES BORDES D'UNE USERFORM
+Public Declare Function GetWindowLong _
+                       Lib "user32" Alias "GetWindowLongA" ( _
+                       ByVal hWnd As Long, _
+                       ByVal nIndex As Long) As Long
+Public Declare Function SetWindowLong _
+                       Lib "user32" Alias "SetWindowLongA" ( _
+                       ByVal hWnd As Long, _
+                       ByVal nIndex As Long, _
+                       ByVal dwNewLong As Long) As Long
+Public Declare Function DrawMenuBar _
+                       Lib "user32" ( _
+                       ByVal hWnd As Long) As Long
+Public Declare Function FindWindowA _
+                       Lib "user32" (ByVal lpClassName As String, _
+                       ByVal lpWindowName As String) As Long
+
+Sub HideTitleBar(frm As Object)
+
+    Dim lngWindow As Long
+    Dim lFrmHdl As Long
+    
+    lFrmHdl = FindWindowA(vbNullString, frm.Caption)
+    lngWindow = GetWindowLong(lFrmHdl, -16)
+    lngWindow = lngWindow And (Not &HC00000)
+    
+    Call SetWindowLong(lFrmHdl, -16, lngWindow)
+    Call DrawMenuBar(lFrmHdl)
+
+End Sub
