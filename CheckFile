@@ -1,0 +1,8 @@
+'VERIFIER L'EXISTENCE D'UN FICHIER OU D'UN DOSSIER
+Public Function CheckFile(strPath As String) As Boolean
+    
+    On Error Resume Next
+    If Not Dir(strPath, vbDirectory) = vbNullString Then CheckFile = True
+    On Error GoTo 0
+    
+End Function
