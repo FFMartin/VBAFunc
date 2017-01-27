@@ -1,0 +1,19 @@
+Function BreakLinks()
+	
+	Dim objName As Object, varLinks As Variant, i As Integer
+
+	varLinks = ActiveWorkbook.LinkSources(Type:=xlLinkTypeExcelLinks)
+
+	If IsArray(varLinks) Then
+		For i = LBound(varLinks) To UBound(varLinks)
+			ActiveWorkbook.BreakLink Name:=varLinks(i), Type:=xlLinkTypeExcelLinks
+		Next i
+	End If
+	 
+	For Each objName In ActiveWorkbook.Names
+		If InStr(objName.RefersTo, "[") > 0 Then
+			objName.Delete
+		End If
+	Next objName
+
+End Function
