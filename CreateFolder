@@ -1,0 +1,8 @@
+'CREER UN DOSSIER
+Public Function CreateFolder(strFolder As String)
+    
+    Dim fso As New FileSystemObject
+    If fso.FolderExists(strFolder) = False Then fso.CreateFolder strFolder
+    Set fso = Nothing
+    
+End Function
