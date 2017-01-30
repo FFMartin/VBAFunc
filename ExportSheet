@@ -1,7 +1,7 @@
 'EXPORTER UNE FEUILLE EXCEL
 Public Function ExportSheet(strWsSrc As String, strWbDst As String, strWsDst As String)
     
-	Dim nameOrig As String: nameOrig = ActiveSheet.Name
+    Dim nameOrig As String: nameOrig = ActiveSheet.Name
     Dim wbSrc As Workbook: Set wbSrc = ThisWorkbook
     Dim wbDst As Workbook, wsDst As Workbook
 
